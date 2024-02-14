@@ -1,0 +1,6 @@
+@OutputFormatters_HostAddress = http://localhost:5172
+
+GET {{OutputFormatters_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
