@@ -1,12 +1,22 @@
-﻿namespace OutputFormatters.Tests
-{
-    internal class Table
-    {
-        private string v;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-        public Table(string v)
+namespace OutputFormatters.Tests
+{
+    public class Table : DatabaseObject
+    {
+        public IEnumerable<Column> Columns { get; set; } = Enumerable.Empty<Column>();
+
+        public Table(string name)
         {
-            this.v = v;
+            Name = name;
         }
+
+        public string Name { get;}
+    }
+
+    public interface DatabaseObject
+    {
+        string Name { get;  }
     }
 }
