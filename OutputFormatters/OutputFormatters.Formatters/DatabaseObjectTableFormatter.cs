@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
-using System;
+﻿
 using System.Text;
+using OutputFormatters.Model;
 
-namespace OutputFormatters.Tests
+namespace OutputFormatters.Formatters
 {
     public class DatabaseObjectTableFormatter
     {

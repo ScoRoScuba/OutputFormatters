@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutputFormatters", "OutputFormatters\OutputFormatters.csproj", "{495171BE-D3B7-46B8-A5FE-CB4A163A2144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutputFormatters", "OutputFormatters\OutputFormatters.csproj", "{495171BE-D3B7-46B8-A5FE-CB4A163A2144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutputFormatters.Tests", "OutputFormatters.Tests\OutputFormatters.Tests.csproj", "{663D311A-6952-4E92-A962-71034E116E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutputFormatters.Tests", "OutputFormatters.Tests\OutputFormatters.Tests.csproj", "{663D311A-6952-4E92-A962-71034E116E00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutputFormatters.Formatters", "OutputFormatters.Formatters\OutputFormatters.Formatters.csproj", "{E34AF6F7-9B12-4F33-8977-2EE03106915E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutputFormatters.Model", "OutputFormatters.Model\OutputFormatters.Model.csproj", "{46762E19-4A0B-49AA-B48D-6F4A13E44091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{663D311A-6952-4E92-A962-71034E116E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{663D311A-6952-4E92-A962-71034E116E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{663D311A-6952-4E92-A962-71034E116E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E34AF6F7-9B12-4F33-8977-2EE03106915E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34AF6F7-9B12-4F33-8977-2EE03106915E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34AF6F7-9B12-4F33-8977-2EE03106915E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34AF6F7-9B12-4F33-8977-2EE03106915E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46762E19-4A0B-49AA-B48D-6F4A13E44091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46762E19-4A0B-49AA-B48D-6F4A13E44091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46762E19-4A0B-49AA-B48D-6F4A13E44091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46762E19-4A0B-49AA-B48D-6F4A13E44091}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

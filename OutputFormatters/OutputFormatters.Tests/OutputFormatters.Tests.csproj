@@ -23,4 +23,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OutputFormatters.Formatters\OutputFormatters.Formatters.csproj" />
+    <ProjectReference Include="..\OutputFormatters.Model\OutputFormatters.Model.csproj" />
+  </ItemGroup>
+
 </Project>

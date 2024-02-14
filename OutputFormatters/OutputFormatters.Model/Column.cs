@@ -1,8 +1,8 @@
-namespace OutputFormatters.Tests;
+namespace OutputFormatters.Model;
 
-public class Column : DatabaseObject 
+public class Column : DatabaseObject
 {
-    public Column( string name, string type)
+    public Column(string name, string type)
     {
         Name = name;
         Type = type;

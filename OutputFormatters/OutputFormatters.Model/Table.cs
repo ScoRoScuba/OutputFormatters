@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace OutputFormatters.Tests
+namespace OutputFormatters.Model
 {
     public class Table : DatabaseObject
     {
@@ -12,11 +12,11 @@ namespace OutputFormatters.Tests
             Name = name;
         }
 
-        public string Name { get;}
+        public string Name { get; }
     }
 
     public interface DatabaseObject
     {
-        string Name { get;  }
+        string Name { get; }
     }
 }
