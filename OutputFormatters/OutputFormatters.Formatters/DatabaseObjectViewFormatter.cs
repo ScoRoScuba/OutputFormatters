@@ -5,6 +5,8 @@ namespace OutputFormatters.Formatters
 {
     public class DatabaseObjectViewFormatter
     {
+        private readonly DatabaseObjectTableFormatter _databaseObjectTableFormatter = new DatabaseObjectTableFormatter();
+
         public string Format(View view)
         {
             var stringBuilder = new StringBuilder();
@@ -18,7 +20,7 @@ namespace OutputFormatters.Formatters
 
             foreach (var dependency in view.Dependencies)
             {
-                stringBuilder.Append($"{Environment.NewLine}\tTable: {dependency.Name}");
+                stringBuilder.Append($"{Environment.NewLine}\t{_databaseObjectTableFormatter.Format(dependency)}");
             }
 
             return stringBuilder.ToString();
