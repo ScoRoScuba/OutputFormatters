@@ -35,5 +35,20 @@ namespace OutputFormatters.Tests
             result.Should().Contain("Table: FooTable");
         }
 
+        [Fact]
+        public void View_Formatter_Outputs_ItColumnsCorrectly()
+        {
+            var view = new View("FooView");
+
+            var columnA = new Column("Bar", "int");
+            var columnB = new Column("Bob", "string");
+            view.Columns = new List<Column> { columnA, columnB };
+
+            var formatter = new DatabaseObjectViewFormatter();
+
+            var result = formatter.Format(view);
+
+            result.Should().Contain("\tBar of type int\r\n\tBob of type string");
+        }
     }
 }

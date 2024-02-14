@@ -11,6 +11,11 @@ namespace OutputFormatters.Formatters
 
             stringBuilder.Append($"View: {view.Name}");
 
+            foreach (var column in view.Columns)
+            {
+                stringBuilder.Append($"{Environment.NewLine}\t{column.Name} of type {column.Type}");
+            }
+
             foreach (var dependency in view.Dependencies)
             {
                 stringBuilder.Append($"{Environment.NewLine}\tTable: {dependency.Name}");
