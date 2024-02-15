@@ -1,4 +1,5 @@
-﻿using OutputFormatters.Model;
+﻿using System;
+using OutputFormatters.Model;
 using System.Text;
 
 namespace OutputFormatters.Formatters

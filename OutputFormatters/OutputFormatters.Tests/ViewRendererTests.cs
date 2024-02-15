@@ -7,7 +7,7 @@ using System;
 
 namespace OutputFormatters.Tests
 {
-    public class ViewOutputRendererTests
+    public class ViewRendererTests
     {
         [Fact]
         public void View_Formatter_Outputs_ViewNameCorrectly()

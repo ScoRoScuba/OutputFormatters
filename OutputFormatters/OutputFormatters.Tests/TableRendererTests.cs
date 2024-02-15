@@ -7,7 +7,7 @@ using OutputFormatters.Model;
 
 namespace OutputFormatters.Tests
 {
-    public class TableOuputRendererTests
+    public class TableRendererTests
     {
         [Fact]
         public void Table_Formatter_Outputs_TableNameCorrectly()
