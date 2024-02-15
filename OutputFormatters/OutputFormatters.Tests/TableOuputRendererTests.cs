@@ -7,14 +7,14 @@ using OutputFormatters.Model;
 
 namespace OutputFormatters.Tests
 {
-    public class TableOuputFormatterTests
+    public class TableOuputRendererTests
     {
         [Fact]
         public void Table_Formatter_Outputs_TableNameCorrectly()
         {
             var table = new Table("Foo");
 
-            var formatter = new DatabaseObjectTableFormatter();
+            var formatter = new DatabaseObjectTableRenderer();
 
             var result = formatter.Format(table);
 
@@ -30,7 +30,7 @@ namespace OutputFormatters.Tests
             var columnB= new Column("Bob", "string");
             table.Columns = new List<Column> { columnA, columnB };
 
-            var formatter = new DatabaseObjectTableFormatter();
+            var formatter = new DatabaseObjectTableRenderer();
 
             var result = formatter.Format(table);
 
@@ -45,7 +45,7 @@ namespace OutputFormatters.Tests
             var columnA = new Column("Bar", "int");
             table.Columns = new List<Column> { columnA };
 
-            var formatter = new DatabaseObjectTableFormatter();
+            var formatter = new DatabaseObjectTableRenderer();
 
             var result = formatter.Format(table);
 

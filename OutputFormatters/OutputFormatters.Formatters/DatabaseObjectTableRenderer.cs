@@ -4,7 +4,7 @@ using OutputFormatters.Model;
 
 namespace OutputFormatters.Formatters
 {
-    public class DatabaseObjectTableFormatter
+    public class DatabaseObjectTableRenderer
     {
         public string Format(Table table)
         {

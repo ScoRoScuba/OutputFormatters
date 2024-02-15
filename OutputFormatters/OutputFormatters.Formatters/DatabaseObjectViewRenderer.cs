@@ -3,9 +3,9 @@ using System.Text;
 
 namespace OutputFormatters.Formatters
 {
-    public class DatabaseObjectViewFormatter
+    public class DatabaseObjectViewRenderer
     {
-        private readonly DatabaseObjectTableFormatter _databaseObjectTableFormatter = new DatabaseObjectTableFormatter();
+        private readonly DatabaseObjectTableRenderer _databaseObjectTableFormatter = new DatabaseObjectTableRenderer();
 
         public string Format(View view)
         {

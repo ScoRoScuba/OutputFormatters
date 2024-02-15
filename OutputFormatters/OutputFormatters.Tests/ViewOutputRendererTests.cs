@@ -7,14 +7,14 @@ using System;
 
 namespace OutputFormatters.Tests
 {
-    public class ViewOutputFormatterTests
+    public class ViewOutputRendererTests
     {
         [Fact]
         public void View_Formatter_Outputs_ViewNameCorrectly()
         {
             var view = new View("Foo");
 
-            var formatter = new DatabaseObjectViewFormatter();
+            var formatter = new DatabaseObjectViewRenderer();
 
             var result = formatter.Format(view);
 
@@ -29,7 +29,7 @@ namespace OutputFormatters.Tests
             var table = new Table("FooTable");
             view.Dependencies = new List<Table> {table};
 
-            var formatter = new DatabaseObjectViewFormatter();
+            var formatter = new DatabaseObjectViewRenderer();
 
             var result = formatter.Format(view);
 
@@ -45,7 +45,7 @@ namespace OutputFormatters.Tests
             var columnB = new Column("Bob", "string");
             view.Columns = new List<Column> { columnA, columnB };
 
-            var formatter = new DatabaseObjectViewFormatter();
+            var formatter = new DatabaseObjectViewRenderer();
 
             var result = formatter.Format(view);
 
@@ -65,7 +65,7 @@ namespace OutputFormatters.Tests
 
             view.Dependencies = new List<Table> { table };
 
-            var formatter = new DatabaseObjectViewFormatter();
+            var formatter = new DatabaseObjectViewRenderer();
 
             var result = formatter.Format(view);
 
@@ -90,7 +90,7 @@ namespace OutputFormatters.Tests
 
             view.Dependencies = new List<Table> { table };
 
-            var formatter = new DatabaseObjectViewFormatter();
+            var formatter = new DatabaseObjectViewRenderer();
 
             var result = formatter.Format(view);
 
