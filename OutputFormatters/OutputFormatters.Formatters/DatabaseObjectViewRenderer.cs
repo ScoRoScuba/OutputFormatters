@@ -1,12 +1,14 @@
 ﻿using System;
 using OutputFormatters.Model;
 using System.Text;
+using OutputFormatters.Tests;
 
 namespace OutputFormatters.Formatters
 {
     public class DatabaseObjectViewRenderer
     {
-        private readonly DatabaseObjectTableRenderer _databaseObjectTableFormatter = new DatabaseObjectTableRenderer();
+        private readonly DatabaseObjectTableRenderer _databaseObjectTableFormatter = new();
+        private readonly DatabaseObjectColumnRenderer _columnRenderer = new();
 
         public string Format(View view)
         {
@@ -16,7 +18,7 @@ namespace OutputFormatters.Formatters
 
             foreach (var column in view.Columns)
             {
-                stringBuilder.Append($"{Environment.NewLine}\t{column.Name} of type {column.Type}");
+                stringBuilder.Append($"{Environment.NewLine}\t{_columnRenderer.Format(column)}");
             }
 
             foreach (var dependency in view.Dependencies)
