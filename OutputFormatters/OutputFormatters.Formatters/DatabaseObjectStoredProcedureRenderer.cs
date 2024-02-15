@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using OutputFormatters.Formatters;
 using OutputFormatters.Formatters.Interfaces;
@@ -20,13 +19,12 @@ namespace OutputFormatters.Tests
             stringBuilder.Append($"{initialTabIndent}Stored Procedure: {storedProcedure.Name}");
 
             var tabIndentLevel = 0;
-
-            foreach (var table in storedProcedure.Dependencies.Where( d => d.GetType() == typeof(Table)).Select( d => d as Table))
+            foreach (var table in storedProcedure.Dependencies.GetTypes<Table>())
             {
-                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectTableRenderer.Format(table, tabIndentLevel+1)}");
+                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectTableRenderer.Format(table, tabIndentLevel + 1)}");
             }
 
-            foreach (var view in storedProcedure.Dependencies.Where(d => d.GetType() == typeof(View)).Select(d => d as View))
+            foreach (var view in storedProcedure.Dependencies.GetTypes<View>())
             {
                 stringBuilder.Append($"{Environment.NewLine}{_databaseObjectViewRenderer.Format(view, tabIndentLevel + 1)}");
             }
