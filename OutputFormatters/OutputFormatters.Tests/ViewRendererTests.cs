@@ -69,7 +69,7 @@ namespace OutputFormatters.Tests
 
             var result = formatter.Format(view);
 
-            result.Should().Contain($"Table: FooTable{Environment.NewLine}\tBar of type int{Environment.NewLine}\tBob of type string");
+            result.Should().Contain($"Table: FooTable{Environment.NewLine}\t\tBar of type int{Environment.NewLine}\t\tBob of type string");
         }
 
 
@@ -94,9 +94,9 @@ namespace OutputFormatters.Tests
 
             var result = formatter.Format(view);
 
-            result.Should().Contain($"View: FooView{Environment.NewLine}\t"+
-                                        $"Bar of type int{Environment.NewLine}\tBob of type string{Environment.NewLine}\t"+
-                                        $"Table: FooTable{Environment.NewLine}\tBar1 of type int{Environment.NewLine}\tBob1 of type string");
+            result.Should().Contain($"View: FooView{Environment.NewLine}"+
+                                        $"\tBar of type int{Environment.NewLine}\tBob of type string{Environment.NewLine}"+
+                                        $"\tTable: FooTable{Environment.NewLine}\t\tBar1 of type int{Environment.NewLine}\t\tBob1 of type string");
         }
     }
 }

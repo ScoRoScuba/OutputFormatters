@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Text;
+using OutputFormatters.Formatters.Interfaces;
 using OutputFormatters.Model;
 using OutputFormatters.Tests;
 
 namespace OutputFormatters.Formatters
 {
-    public class DatabaseObjectTableRenderer
+    public class DatabaseObjectTableRenderer : DatabaseObjectRenderer<Table>
     {
         private readonly DatabaseObjectColumnRenderer _columnRenderer = new();
+
         public string Format(Table table, int initialTabIndentLevel = 0)
         {
             var stringBuilder = new StringBuilder();

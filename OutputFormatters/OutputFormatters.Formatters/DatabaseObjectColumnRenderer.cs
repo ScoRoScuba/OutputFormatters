@@ -1,8 +1,9 @@
-﻿using OutputFormatters.Model;
+﻿using OutputFormatters.Formatters.Interfaces;
+using OutputFormatters.Model;
 
 namespace OutputFormatters.Tests;
 
-public class DatabaseObjectColumnRenderer
+public class DatabaseObjectColumnRenderer: DatabaseObjectRenderer<Column>
 {
     public string Format(Column column, int initialTabIndentLevel = 0)
     {
