@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using OutputFormatters.Model.Interfaces;
 
 namespace OutputFormatters.Model
 {
-    public class View : DatabaseObject
+    public class View : IDatabaseObject
     {
-        public IEnumerable<Column> Columns { get; set; } = Enumerable.Empty<Column>();
-        public IEnumerable<Table> Dependencies { get; set; } = Enumerable.Empty<Table>();
+        private readonly List<IDatabaseObject> _dependencies = new();
 
         public View(string name)
         {
@@ -14,6 +13,14 @@ namespace OutputFormatters.Model
         }
 
         public string Name { get; }
+
+        public IReadOnlyList<Column> Columns => _dependencies.GetReadOnlyListOfType<Column>();
+        public IReadOnlyList<Table> Tables => _dependencies.GetReadOnlyListOfType<Table>();
+
+        public void AddDependency(IDatabaseObject databaseObject)
+        {
+            _dependencies.Add(databaseObject);
+        }
     }
 }
 

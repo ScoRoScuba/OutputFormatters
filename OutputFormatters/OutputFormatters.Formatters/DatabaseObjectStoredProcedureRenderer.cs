@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Text;
-using OutputFormatters.Formatters;
 using OutputFormatters.Formatters.Interfaces;
 using OutputFormatters.Model;
 
-namespace OutputFormatters.Tests
+namespace OutputFormatters.Formatters
 {
-    public class DatabaseObjectStoredProcedureRenderer : DatabaseObjectRenderer<StoredProcedure>
+    public class DatabaseObjectStoredProcedureRenderer : IDatabaseObjectRenderer<StoredProcedure>
     {
         private readonly DatabaseObjectTableRenderer _databaseObjectTableRenderer = new();
         private readonly DatabaseObjectViewRenderer _databaseObjectViewRenderer = new();
 
-        public string Format(StoredProcedure storedProcedure, int initialTabIndentLevel = 0)
+        public string Render(StoredProcedure storedProcedure, int initialTabIndentLevel = 0)
         {
             var stringBuilder = new StringBuilder();
             var initialTabIndent = initialTabIndentLevel == 0 ? string.Empty : new string('\t', initialTabIndentLevel);
@@ -19,14 +18,14 @@ namespace OutputFormatters.Tests
             stringBuilder.Append($"{initialTabIndent}Stored Procedure: {storedProcedure.Name}");
 
             var tabIndentLevel = 0;
-            foreach (var table in storedProcedure.Dependencies.GetTypes<Table>())
+            foreach (var table in storedProcedure.Tables)
             {
-                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectTableRenderer.Format(table, tabIndentLevel + 1)}");
+                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectTableRenderer.Render(table, tabIndentLevel + 1)}");
             }
 
-            foreach (var view in storedProcedure.Dependencies.GetTypes<View>())
+            foreach (var view in storedProcedure.Views)
             {
-                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectViewRenderer.Format(view, tabIndentLevel + 1)}");
+                stringBuilder.Append($"{Environment.NewLine}{_databaseObjectViewRenderer.Render(view, tabIndentLevel + 1)}");
             }
 
             return stringBuilder.ToString();

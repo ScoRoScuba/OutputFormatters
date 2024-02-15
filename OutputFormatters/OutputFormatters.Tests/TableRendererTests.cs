@@ -1,7 +1,6 @@
 using System;
 using Xunit;
 using FluentAssertions;
-using System.Collections.Generic;
 using OutputFormatters.Formatters;
 using OutputFormatters.Model;
 
@@ -14,9 +13,9 @@ namespace OutputFormatters.Tests
         {
             var table = new Table("Foo");
 
-            var formatter = new DatabaseObjectTableRenderer();
+            var renderer = new DatabaseObjectTableRenderer();
 
-            var result = formatter.Format(table);
+            var result = renderer.Render(table);
 
             result.Should().Contain("Table: Foo");
         }
@@ -26,13 +25,12 @@ namespace OutputFormatters.Tests
         {
             var table = new Table("Foo");
 
-            var columnA = new Column("Bar", "int");
-            var columnB= new Column("Bob", "string");
-            table.Columns = new List<Column> { columnA, columnB };
+            table.AddColumn(new Column("Bar", "int"));
+            table.AddColumn(new Column("Bob", "string"));
 
-            var formatter = new DatabaseObjectTableRenderer();
+            var renderer = new DatabaseObjectTableRenderer();
 
-            var result = formatter.Format(table);
+            var result = renderer.Render(table);
 
             result.Should().Contain("\tBar of type int\r\n\tBob of type string");
         }
@@ -42,12 +40,11 @@ namespace OutputFormatters.Tests
         {
             var table = new Table("Foo");
 
-            var columnA = new Column("Bar", "int");
-            table.Columns = new List<Column> { columnA };
+            table.AddColumn(new Column("Bar", "int"));
 
-            var formatter = new DatabaseObjectTableRenderer();
+            var renderer = new DatabaseObjectTableRenderer();
 
-            var result = formatter.Format(table);
+            var result = renderer.Render(table);
 
             result.Should().Be($"Table: Foo{Environment.NewLine}\tBar of type int");
         }

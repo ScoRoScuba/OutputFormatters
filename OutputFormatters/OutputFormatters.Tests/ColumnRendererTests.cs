@@ -1,11 +1,6 @@
 ﻿using FluentAssertions;
 using OutputFormatters.Formatters;
 using OutputFormatters.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace OutputFormatters.Tests
@@ -19,10 +14,9 @@ namespace OutputFormatters.Tests
 
             var renderer = new DatabaseObjectColumnRenderer();
 
-            var result = renderer.Format(column);
+            var result = renderer.Render(column);
 
-            result.Should().Contain("Bar of type int");
-
+            result.Should().Be("Bar of type int");
         }
     }
 }

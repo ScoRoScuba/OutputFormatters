@@ -1,13 +1,16 @@
-namespace OutputFormatters.Model;
+using OutputFormatters.Model.Interfaces;
 
-public class Column : DatabaseObject
+namespace OutputFormatters.Model
 {
-    public Column(string name, string type)
+    public class Column : IDatabaseObject
     {
-        Name = name;
-        Type = type;
-    }
+        public Column(string name, string type)
+        {
+            Name = name;
+            Type = type;
+        }
 
-    public string Name { get; }
-    public string Type { get; }
+        public string Name { get; }
+        public string Type { get; }
+    }
 }

@@ -1,18 +1,25 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using OutputFormatters.Model;
+using OutputFormatters.Model.Interfaces;
 
-namespace OutputFormatters.Tests;
-
-public class StoredProcedure : DatabaseObject
+namespace OutputFormatters.Model
 {
-    public IEnumerable<DatabaseObject> Dependencies { get; set; } = Enumerable.Empty<DatabaseObject>();
-
-    public StoredProcedure(string name)
+    public class StoredProcedure : IDatabaseObject
     {
-        Name = name;
+        private readonly List<IDatabaseObject> _dependencies = new();
+
+        public StoredProcedure(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+
+        public IReadOnlyList<Table> Tables => _dependencies.GetReadOnlyListOfType<Table>();
+        public IReadOnlyList<View> Views => _dependencies.GetReadOnlyListOfType<View>();
+
+        public void AddDependency(IDatabaseObject databaseObject)
+        {
+            _dependencies.Add(databaseObject);
+        }
     }
-
-    public string Name { get; }
-
 }

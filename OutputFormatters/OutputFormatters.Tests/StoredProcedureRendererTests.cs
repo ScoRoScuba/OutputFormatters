@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using FluentAssertions;
+using OutputFormatters.Formatters;
 using OutputFormatters.Model;
 using Xunit;
 
@@ -13,9 +13,9 @@ namespace OutputFormatters.Tests
         {
             var storedProcedure = new StoredProcedure("FooSP");
 
-            var formatter = new DatabaseObjectStoredProcedureRenderer();
+            var renderer= new DatabaseObjectStoredProcedureRenderer();
 
-            var result = formatter.Format(storedProcedure);
+            var result = renderer.Render(storedProcedure);
 
             result.Should().Contain("Stored Procedure: FooSP");
         }
@@ -27,11 +27,11 @@ namespace OutputFormatters.Tests
 
             var table = new Table("Foo");
 
-            storedProcedure.Dependencies = new List<DatabaseObject> { table };
+            storedProcedure.AddDependency(table);
 
-            var formatter = new DatabaseObjectStoredProcedureRenderer();
+            var renderer = new DatabaseObjectStoredProcedureRenderer();
 
-            var result = formatter.Format(storedProcedure);
+            var result = renderer.Render(storedProcedure);
 
             result.Should().Contain("Table: Foo");
         }
@@ -43,11 +43,11 @@ namespace OutputFormatters.Tests
 
             var table = new Table("Foo");
 
-            storedProcedure.Dependencies = new List<DatabaseObject> { table };
+            storedProcedure.AddDependency(table);
 
-            var formatter = new DatabaseObjectStoredProcedureRenderer();
+            var renderer = new DatabaseObjectStoredProcedureRenderer();
 
-            var result = formatter.Format(storedProcedure);
+            var result = renderer.Render(storedProcedure);
 
             result.Should().Contain("\tTable: Foo");
         }
@@ -60,13 +60,14 @@ namespace OutputFormatters.Tests
             var view = new View("FooVw");
             var columnA = new Column("Bar", "int");
             var columnB = new Column("Bob", "string");
-            view.Columns = new List<Column> { columnA, columnB };
+            view.AddDependency(columnA);
+            view.AddDependency(columnB);
 
-            storedProcedure.Dependencies = new List<DatabaseObject> { view };
+            storedProcedure.AddDependency(view);
 
-            var formatter = new DatabaseObjectStoredProcedureRenderer();
+            var renderer = new DatabaseObjectStoredProcedureRenderer();
 
-            var result = formatter.Format(storedProcedure);
+            var result = renderer.Render(storedProcedure);
 
             result.Should().Contain("\tView: FooVw\r\n\t\tBar of type int\r\n\t\tBob of type string");
         }
@@ -77,19 +78,19 @@ namespace OutputFormatters.Tests
             var storedProcedure = new StoredProcedure("FooSP");
 
             var table = new Table("Baz");
-            var columnA = new Column("Bosh", "int");
-            table.Columns = new List<Column> { columnA };
+            table.AddColumn(new Column("Bosh", "int"));
 
             var view = new View("Banana");
             var viewTable = new Table("Salary");
-            viewTable.Columns = new List<Column> { columnA };
-            view.Dependencies = new List<Table> { viewTable };
+            viewTable.AddColumn(new Column("Bosh", "int"));
+            view.AddDependency(viewTable);
 
-            storedProcedure.Dependencies = new List<DatabaseObject> { table, view };
-             
-            var formatter = new DatabaseObjectStoredProcedureRenderer();
+            storedProcedure.AddDependency(table);
+            storedProcedure.AddDependency(view);
 
-            var result = formatter.Format(storedProcedure);
+            var renderer = new DatabaseObjectStoredProcedureRenderer();
+
+            var result = renderer.Render(storedProcedure);
 
             var expected = $"Stored Procedure: FooSP{Environment.NewLine}" +
                            $"\tTable: Baz{Environment.NewLine}" +
@@ -98,7 +99,7 @@ namespace OutputFormatters.Tests
                            $"\t\tTable: Salary{Environment.NewLine}" +
                            $"\t\t\tBosh of type int";
 
-            result.Should().Contain(expected);
+            result.Should().Be(expected);
         }
     }
 }

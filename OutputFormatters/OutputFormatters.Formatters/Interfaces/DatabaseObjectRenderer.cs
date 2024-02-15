@@ -1,9 +1,7 @@
-﻿using OutputFormatters.Model;
-
-namespace OutputFormatters.Formatters.Interfaces
+﻿namespace OutputFormatters.Formatters.Interfaces
 {
-    public interface DatabaseObjectRenderer<in T>
+    public interface IDatabaseObjectRenderer<in T>
     {
-        string Format(T databaseObject, int initialTabIndentLevel = 0);
+        string Render(T databaseObject, int initialTabIndentLevel = 0);
     }
 }

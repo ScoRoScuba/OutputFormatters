@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using OutputFormatters.Model.Interfaces;
 
 namespace OutputFormatters.Model
 {
-    public class Table : DatabaseObject
+    public class Table : IDatabaseObject
     {
-        public IEnumerable<Column> Columns { get; set; } = Enumerable.Empty<Column>();
-
+        private readonly List<Column> _columns = new();
         public Table(string name)
         {
             Name = name;
         }
 
         public string Name { get; }
-    }
 
-    public interface DatabaseObject
-    {
-        string Name { get; }
+        public IReadOnlyList<Column> Columns => _columns.AsReadOnly();
+
+        public void AddColumn(Column column)
+        {
+            _columns.Add(column);
+        }
     }
 }
